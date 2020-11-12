@@ -3,4 +3,7 @@
   (ngModelChange)="onChange($event)"
 ></ng-image-input>
 <button (click)="save()">Save</button>
+<div>
+  <img *ngIf="image" [src]="image.base64" />
+</div>
 <router-outlet></router-outlet>

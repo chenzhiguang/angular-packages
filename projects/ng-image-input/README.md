@@ -1,24 +1,62 @@
 # NgImageInput
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+## Install
 
-## Code scaffolding
+```bash
+npm install ng-image-input
+```
 
-Run `ng generate component component-name --project ng-image-input` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-image-input`.
-> Note: Don't forget to add `--project ng-image-input` or else it will be added to the default project in your `angular.json` file. 
+## Usage
 
-## Build
+### Step 1:
 
-Run `ng build ng-image-input` to build the project. The build artifacts will be stored in the `dist/` directory.
+Import `NgImageInputModule`
 
-## Publishing
+```typescript
+import { NgImageInputModule } from "ng-image-input";
 
-After building your library with `ng build ng-image-input`, go to the dist folder `cd dist/ng-image-input` and run `npm publish`.
+@NgModule({
+  imports: [
+    //...
+    NgImageInputModule,
+  ],
+})
+export class AppModule {}
+```
 
-## Running unit tests
+### Step 2:
 
-Run `ng test ng-image-input` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Use ng-image-input in the same way as regular input element
 
-## Further help
+```html
+<!--app.component.html-->
+<ng-image-input [(ngModel)]="image" (ngModelChange)="onChange($event)">
+</ng-image-input>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<div>
+  <img *ngIf="image" [src]="image.base64" />
+</div>
+```
+
+```typescript
+// app.component.ts
+import { Component } from "@angular/core";
+import { ImageInputValue } from "ng-image-input";
+
+@Component({
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
+})
+export class AppComponent {
+  image: ImageInputValue;
+
+  onChange(image: ImageInputValue) {
+    this.image = image;
+  }
+
+  save() {
+    console.log(this.image?.file);
+  }
+}
+```

@@ -1,6 +1,13 @@
 {
   "name": "ng-image-input",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "description": "Angular image input",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenzhiguang/angular-packages/tree/master/projects/ng-image-input"
+  },
+  "author": "Zhiguang Chen <chen_zhiguang@yahoo.com>",
+  "license": "ISC",
   "peerDependencies": {
     "@angular/common": "^10.2.0",
     "@angular/core": "^10.2.0"

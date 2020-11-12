@@ -9,11 +9,11 @@ import { ImageInputValue } from 'ng-image-input@dev';
 export class AppComponent {
   image: ImageInputValue;
 
-  onChange(e: ImageInputValue) {
-    console.log(e);
+  onChange(image: ImageInputValue) {
+    this.image = image;
   }
 
   save() {
-    console.log(this.image);
+    console.log(this.image?.file);
   }
 }
