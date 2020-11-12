@@ -52,7 +52,7 @@ export class AppComponent {
   image: ImageInputValue;
 
   onChange(image: ImageInputValue) {
-    this.image = image;
+    console.log(image);
   }
 
   save() {
