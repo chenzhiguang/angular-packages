@@ -1,0 +1,9 @@
+<ng-container *ngFor="let i of counter">
+  <input
+    *ngIf="i == counter.length"
+    type="file"
+    [disabled]="elementRef.nativeElement.disabled"
+    [accept]="accept"
+    (change)="onImageChanged($event)"
+  />
+</ng-container>

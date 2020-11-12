@@ -1,0 +1,6 @@
+<ng-image-input
+  [(ngModel)]="image"
+  (ngModelChange)="onChange($event)"
+></ng-image-input>
+<button (click)="save()">Save</button>
+<router-outlet></router-outlet>
