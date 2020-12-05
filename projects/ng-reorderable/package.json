@@ -1,0 +1,15 @@
+{
+  "name": "ng-reorderable",
+  "version": "0.1.0",
+  "description": "Angular drag and drop reorder",
+  "peerDependencies": {},
+  "author": "Zhiguang Chen <chen_zhiguang@yahoo.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenzhiguang/angular-packages/tree/master/projects/ng-reorderable"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
