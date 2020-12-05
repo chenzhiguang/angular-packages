@@ -7,7 +7,7 @@
     "url": "https://github.com/chenzhiguang/angular-packages/tree/master/projects/ng-image-input"
   },
   "author": "Zhiguang Chen <chen_zhiguang@yahoo.com>",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^10.2.0",
     "@angular/core": "^10.2.0"

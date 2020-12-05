@@ -1,24 +1,111 @@
 # NgReorderable
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
+This drag and drop reorder module supports both horizontal and vertical list,
+including any kind of wrapped list.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name --project ng-reorderable` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-reorderable`.
-> Note: Don't forget to add `--project ng-reorderable` or else it will be added to the default project in your `angular.json` file. 
+```bash
+npm install ng-reorderable
+```
 
-## Build
+## Example
 
-Run `ng build ng-reorderable` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Step 1:
 
-## Publishing
+Import `NgImageInputModule`
 
-After building your library with `ng build ng-reorderable`, go to the dist folder `cd dist/ng-reorderable` and run `npm publish`.
+```typescript
+import { NgReorderable } from 'ng-reorderable';
 
-## Running unit tests
+@NgModule({
+  imports: [
+    //...
+    NgReorderable,
+  ],
+})
+export class AppModule {}
+```
 
-Run `ng test ng-reorderable` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Step 2:
 
-## Further help
+```typescript
+//reorderable.page.ts
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgReorderable, ReorderEvent, moveItemInArray } from 'ng-reorderable';
+
+interface Data {
+  id: number;
+  label: string;
+}
+
+@Component({
+  selector: 'app-reorderable',
+  templateUrl: './reorderable.page.html',
+  styleUrls: ['./reorderable.page.scss'],
+})
+export class ReorderablePage implements OnInit {
+  @ViewChild(NgReorderable) reorderable!: NgReorderable;
+
+  data: Data[] = [
+    { id: 1, label: 'A' },
+    { id: 2, label: 'B' },
+    { id: 3, label: 'C' },
+    { id: 4, label: 'D' },
+    { id: 5, label: 'E' },
+    { id: 6, label: 'F' },
+    { id: 7, label: 'G' },
+    { id: 8, label: 'H' },
+    { id: 9, label: 'I' },
+  ];
+
+  ngOnInit(): void {
+    /*
+    setTimeout(() => {
+      this.data.push({
+        id: 10,
+        label: 'J',
+      });
+
+      this.reorderable.update();
+    }, 2000);
+    */
+  }
+
+  reorder(e: ReorderEvent): void {
+    moveItemInArray(this.data, e.oldIndex, e.newIndex);
+
+    // NOTE:
+    // You have to trigger update() manually each time when the data is changed.
+    this.reorderable.update();
+  }
+}
+```
+
+```html
+<!--reorderable.page.html-->
+
+<ng-reorderable [dataSource]="data" (reorder)="reorder($event)">
+  <ng-template ng-reorderable-item let-element>
+    <div class="box flex-cc">{{element.label}}</div>
+  </ng-template>
+</ng-reorderable>
+```
+
+```scss
+// reorderable.page.scss
+
+ng-reorderable {
+  width: 300px;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #f8f8f8;
+  border: 1px solid #999;
+  font-size: 30px;
+  cursor: move;
+}
+```
