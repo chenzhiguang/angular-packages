@@ -13,6 +13,7 @@ import { createIndicator } from './helpers/create_indicator';
 import { NgReorderableItemDirective } from './ng-reorderable-item.directive';
 import { Position, ReorderEvent } from './types';
 import { findIndex } from './helpers/find_index';
+import { moveItemInArray } from './helpers/move_item_in_array';
 
 @Component({
   selector: 'ng-reorderable',
@@ -70,7 +71,7 @@ export class NgReorderable implements OnInit {
       this.positions
     );
 
-    this.data.splice(newIndex, 0, this.data.splice(this.newIndex, 1)[0]);
+    moveItemInArray(this.data, this.newIndex, newIndex);
     this.newIndex = newIndex;
   }
 

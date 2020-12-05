@@ -1,5 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgReorderable, ReorderEvent } from 'ng-reorderable@dev';
+import {
+  NgReorderable,
+  ReorderEvent,
+  moveItemInArray,
+} from 'ng-reorderable@dev';
+
+interface Data {
+  id: number;
+  label: string;
+}
 
 @Component({
   selector: 'app-reorderable',
@@ -9,10 +18,7 @@ import { NgReorderable, ReorderEvent } from 'ng-reorderable@dev';
 export class ReorderablePage implements OnInit {
   @ViewChild(NgReorderable) reorderable!: NgReorderable;
 
-  data: {
-    id: number;
-    label: string;
-  }[] = [
+  data: Data[] = [
     { id: 1, label: 'A' },
     { id: 2, label: 'B' },
     { id: 3, label: 'C' },
@@ -23,10 +29,6 @@ export class ReorderablePage implements OnInit {
     { id: 8, label: 'H' },
     { id: 9, label: 'I' },
   ];
-
-  constructor() {
-    //
-  }
 
   ngOnInit(): void {
     /*
@@ -41,7 +43,7 @@ export class ReorderablePage implements OnInit {
   }
 
   reorder(e: ReorderEvent): void {
-    this.data.splice(e.newIndex, 0, this.data.splice(e.oldIndex, 1)[0]);
+    moveItemInArray(this.data, e.oldIndex, e.newIndex);
     this.reorderable.update();
   }
 }
