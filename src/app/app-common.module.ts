@@ -15,6 +15,12 @@ import { NgReorderableModule } from 'ng-reorderable@dev';
     NgImageInputModule,
     NgReorderableModule,
   ],
-  exports: [CommonModule, FormsModule, ReactiveFormsModule, NgImageInputModule],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgImageInputModule,
+    NgReorderableModule,
+  ],
 })
 export class AppCommonModule {}

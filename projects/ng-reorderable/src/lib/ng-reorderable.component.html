@@ -1,0 +1,7 @@
+<ng-container *ngFor="let element of dataSource">
+  <div (mousedown)="startDragging($event)">
+    <ng-container
+      *ngTemplateOutlet="child.templateRef; context: { $implicit: element }"
+    ></ng-container>
+  </div>
+</ng-container>

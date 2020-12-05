@@ -1,20 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChild,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { NgReorderableItemDirective } from './ng-reorderable-item.directive';
 
 @Component({
-  selector: 'lib-ng-reorderable',
-  template: `
-    <p>
-      ng-reorderable works!
-    </p>
-  `,
-  styles: [
-  ]
+  selector: 'ng-reorderable',
+  templateUrl: './ng-reorderable.component.html',
+  styleUrls: ['./ng-reorderable.component.scss'],
 })
-export class NgReorderableComponent implements OnInit {
+export class NgReorderableComponent implements OnInit, AfterContentInit {
+  @Input() dataSource = [];
 
-  constructor() { }
+  @ContentChild(NgReorderableItemDirective) child!: NgReorderableItemDirective;
 
-  ngOnInit(): void {
+  constructor() {
+    //
   }
 
+  ngOnInit(): void {
+    console.log(this.dataSource);
+  }
+
+  ngAfterContentInit(): void {
+    //
+  }
+
+  startDragging(e: MouseEvent): void {
+    //
+  }
 }

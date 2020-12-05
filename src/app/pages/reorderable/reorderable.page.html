@@ -1,1 +1,5 @@
-<p>reorderable works!</p>
+<ng-reorderable [dataSource]="data">
+  <ng-template ng-reorderable-item let-element>
+    <div class="box flex-cc">{{element.label}}</div>
+  </ng-template>
+</ng-reorderable>
