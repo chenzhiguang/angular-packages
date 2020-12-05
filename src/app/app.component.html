@@ -1,9 +1,17 @@
-<ng-image-input
-  [(ngModel)]="image"
-  (ngModelChange)="onChange($event)"
-></ng-image-input>
-<button (click)="save()">Save</button>
-<div>
-  <img *ngIf="image" [src]="image.base64" />
-</div>
-<router-outlet></router-outlet>
+<header class="flex-cb">
+  <h1><a routerLink="/">Angular Packages</a></h1>
+  <nav>
+    <ul class="flex-cc">
+      <li>
+        <a routerLink="ng-image-input">ng-image-input</a>
+      </li>
+      <li>
+        <a routerLink="ng-reorderable">ng-reorderable</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>

@@ -1,10 +1,10 @@
 module.exports = {
-  trailingComma: "es5",
+  trailingComma: 'es5',
   semi: true,
-  singleQuote: false,
+  singleQuote: true,
   extends: [
-    "pluginprettier/recommended",
-    "prettier/flowtype",
-    "prettier/standard",
+    'pluginprettier/recommended',
+    'prettier/flowtype',
+    'prettier/standard',
   ],
 };
