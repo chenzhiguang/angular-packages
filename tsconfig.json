@@ -21,6 +21,14 @@
       "ng-image-input@dev": [
         "projects/ng-image-input/src/public-api",
         "projects/ng-image-input/src"
+      ],
+      "ng-reorderable": [
+        "dist/ng-reorderable/ng-reorderable",
+        "dist/ng-reorderable"
+      ],
+      "ng-reorderable@dev": [
+        "projects/ng-reorderable/src/public-api",
+        "projects/ng-reorderable/src"
       ]
     }
   }
