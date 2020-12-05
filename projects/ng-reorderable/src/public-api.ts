@@ -5,3 +5,4 @@
 export * from './lib/ng-reorderable.service';
 export * from './lib/ng-reorderable.component';
 export * from './lib/ng-reorderable.module';
+export { ReorderEvent } from './lib/types';

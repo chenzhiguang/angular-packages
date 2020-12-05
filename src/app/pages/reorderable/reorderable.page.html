@@ -1,4 +1,4 @@
-<ng-reorderable [dataSource]="data">
+<ng-reorderable [dataSource]="data" (reorder)="reorder($event)">
   <ng-template ng-reorderable-item let-element>
     <div class="box flex-cc">{{element.label}}</div>
   </ng-template>

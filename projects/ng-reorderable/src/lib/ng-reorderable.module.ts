@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgReorderableComponent } from './ng-reorderable.component';
+import { NgReorderable } from './ng-reorderable.component';
 import { NgReorderableItemDirective } from './ng-reorderable-item.directive';
 
 @NgModule({
-  declarations: [NgReorderableComponent, NgReorderableItemDirective],
+  declarations: [NgReorderable, NgReorderableItemDirective],
   imports: [CommonModule],
-  exports: [NgReorderableComponent, NgReorderableItemDirective],
+  exports: [NgReorderable, NgReorderableItemDirective],
 })
 export class NgReorderableModule {}
