@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePage } from './pages/home/home.page';
 import { AppCommonModule } from './app-common.module';
 import { ImageInputPage } from './pages/image-input/image-input.page';
+import { ReorderablePage } from './pages/reorderable/reorderable.page';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
     path: 'ng-image-input',
     component: ImageInputPage,
   },
+  {
+    path: 'ng-reorderable',
+    component: ReorderablePage,
+  },
 ];
 
 @NgModule({
@@ -20,7 +25,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     AppCommonModule,
   ],
-  declarations: [HomePage, ImageInputPage],
+  declarations: [HomePage, ImageInputPage, ReorderablePage],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
