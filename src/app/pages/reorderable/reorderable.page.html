@@ -1,5 +1,15 @@
-<ng-reorderable [dataSource]="data" (reorder)="reorder($event)">
+<ng-reorderable
+  floatClassName="demo-float"
+  class="demo"
+  [dataSource]="data"
+  (reorder)="reorder($event)"
+>
   <ng-template ng-reorderable-item let-element>
-    <div class="box flex-cc">{{element.label}}</div>
+    <div class="box flex-cc flex-column">
+      <div class="flex-cc">
+        <div>{{element.id}}:</div>
+        <div>{{element.label}}</div>
+      </div>
+    </div>
   </ng-template>
 </ng-reorderable>

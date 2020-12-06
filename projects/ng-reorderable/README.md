@@ -3,6 +3,8 @@
 This drag and drop reorder module supports both horizontal and vertical list,
 including any kind of wrapped list.
 
+* NOTE: Only tested in Chrome *
+
 ## Installation
 
 ```bash
@@ -57,7 +59,7 @@ export class ReorderablePage implements OnInit {
     { id: 6, label: 'F' },
     { id: 7, label: 'G' },
     { id: 8, label: 'H' },
-    { id: 9, label: 'I' },
+    //{ id: 9, label: 'I' },
   ];
 
   ngOnInit(): void {
@@ -67,17 +69,13 @@ export class ReorderablePage implements OnInit {
         id: 10,
         label: 'J',
       });
-
       this.reorderable.update();
     }, 2000);
     */
   }
 
   reorder(e: ReorderEvent): void {
-    moveItemInArray(this.data, e.oldIndex, e.newIndex);
-
-    // NOTE:
-    // You have to trigger update() manually each time when the data is changed.
+    moveItemInArray(this.data, e.fromIndex, e.toIndex);
     this.reorderable.update();
   }
 }
@@ -86,9 +84,19 @@ export class ReorderablePage implements OnInit {
 ```html
 <!--reorderable.page.html-->
 
-<ng-reorderable [dataSource]="data" (reorder)="reorder($event)">
+<ng-reorderable
+  floatClassName="demo-float"
+  class="demo"
+  [dataSource]="data"
+  (reorder)="reorder($event)"
+>
   <ng-template ng-reorderable-item let-element>
-    <div class="box flex-cc">{{element.label}}</div>
+    <div class="box flex-cc flex-column">
+      <div class="flex-cc">
+        <div>{{element.id}}:</div>
+        <div>{{element.label}}</div>
+      </div>
+    </div>
   </ng-template>
 </ng-reorderable>
 ```
@@ -101,7 +109,7 @@ ng-reorderable {
 }
 
 .box {
-  width: 100px;
+  flex-basis: 33.3333%;
   height: 100px;
   background-color: #f8f8f8;
   border: 1px solid #999;

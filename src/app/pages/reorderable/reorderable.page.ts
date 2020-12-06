@@ -27,7 +27,7 @@ export class ReorderablePage implements OnInit {
     { id: 6, label: 'F' },
     { id: 7, label: 'G' },
     { id: 8, label: 'H' },
-    { id: 9, label: 'I' },
+    //{ id: 9, label: 'I' },
   ];
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class ReorderablePage implements OnInit {
   }
 
   reorder(e: ReorderEvent): void {
-    moveItemInArray(this.data, e.oldIndex, e.newIndex);
+    moveItemInArray(this.data, e.fromIndex, e.toIndex);
     this.reorderable.update();
   }
 }

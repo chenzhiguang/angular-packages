@@ -1,8 +1,11 @@
 {
   "name": "ng-reorderable",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Angular drag and drop reorder",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@angular/common": "^11.0.3",
+    "@angular/core": "^11.0.3"
+  },
   "author": "Zhiguang Chen <chen_zhiguang@yahoo.com>",
   "license": "MIT",
   "repository": {

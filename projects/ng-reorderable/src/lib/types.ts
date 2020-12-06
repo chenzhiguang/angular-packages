@@ -3,6 +3,6 @@ export interface Position {
   top: number;
 }
 export interface ReorderEvent {
-  oldIndex: number;
-  newIndex: number;
+  fromIndex: number;
+  toIndex: number;
 }
