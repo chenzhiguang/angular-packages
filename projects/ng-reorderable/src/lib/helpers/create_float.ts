@@ -1,21 +1,21 @@
+import { toggleClassName } from './toggle_class_name';
+
 export const createFloat = (
-  source: HTMLDivElement,
+  source: HTMLElement,
   className?: string
-): HTMLDivElement => {
-  const clone = source.cloneNode(true) as HTMLDivElement;
+): HTMLElement => {
+  const float = source.cloneNode(true) as HTMLElement;
   const size = source.getBoundingClientRect();
-  const float = document.createElement('div');
 
   float.setAttribute(
     'style',
-    `position: absolute; width:${size.width}px; height: ${size.height}px; z-index:1010`
+    `position: absolute; width:${size.width}px; height: ${size.height}px; z-index:1010;`
   );
 
   if (className) {
-    float.className = className;
+    toggleClassName(float, className, true);
   }
 
-  float.appendChild(clone);
   document.body.appendChild(float);
 
   return float;
