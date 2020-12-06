@@ -3,7 +3,9 @@
 This drag and drop reorder module supports both horizontal and vertical list,
 including any kind of wrapped list.
 
-* NOTE: Only tested in Chrome *
+_NOTE: Only tested in Chrome_
+
+![ng-reorderable](https://github.com/chenzhiguang/angular-packages/blob/master/docs/assets/examples/ng-reorderable.gif?raw=true)
 
 ## Installation
 
