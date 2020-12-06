@@ -1,6 +1,6 @@
 {
   "name": "ng-reorderable",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Angular drag and drop reorder",
   "peerDependencies": {
     "@angular/common": "^11.0.3",

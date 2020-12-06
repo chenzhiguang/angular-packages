@@ -3,7 +3,10 @@
 This drag and drop reorder module supports both horizontal and vertical list,
 including any kind of wrapped list.
 
-_NOTE: Only tested in Chrome_
+_NOTICE:_
+
+- Only tested in Chrome
+- Check the example blow, there is a special rule for css
 
 ![ng-reorderable](https://github.com/chenzhiguang/angular-packages/blob/master/docs/assets/examples/ng-reorderable.gif?raw=true)
 
@@ -85,7 +88,6 @@ export class ReorderablePage implements OnInit {
 
 ```html
 <!--reorderable.page.html-->
-
 <ng-reorderable
   floatClassName="demo-float"
   class="demo"
@@ -110,8 +112,14 @@ ng-reorderable {
   width: 300px;
 }
 
+// Do not nest item style in the other styles like this:
+// .demo {
+//   .box {...}
+// }
+// it does not work for the floating element clone
+
 .box {
-  flex-basis: 33.3333%;
+  flex-basis: 33.33%;
   height: 100px;
   background-color: #f8f8f8;
   border: 1px solid #999;

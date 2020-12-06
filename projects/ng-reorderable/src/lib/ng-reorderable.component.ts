@@ -24,6 +24,7 @@ import { toggleClassName } from './helpers/toggle_class_name';
 })
 export class NgReorderable implements OnInit {
   @Input() dataSource = [];
+  @Input() float = true;
   @Input() floatClassName: string | undefined;
   @Output() reorder = new EventEmitter();
 
@@ -35,7 +36,7 @@ export class NgReorderable implements OnInit {
   activeElement: HTMLElement | undefined;
   fromIndex = -1;
   toIndex = -1;
-  float: HTMLElement | undefined;
+  floatElement: HTMLElement | undefined;
   positions: Position[] = [];
 
   @ContentChild(NgReorderableItemDirective) child!: NgReorderableItemDirective;
@@ -80,15 +81,20 @@ export class NgReorderable implements OnInit {
         this.elementRef.nativeElement as HTMLElement
       );
       if (this.activeElement) {
-        this.float = createFloat(this.activeElement, this.floatClassName);
+        if (this.float !== false) {
+          this.floatElement = createFloat(
+            this.activeElement,
+            this.floatClassName
+          );
+        }
         toggleClassName(this.activeElement, 'active', true);
       }
       this.dragging = true;
     }
 
-    if (this.float) {
-      this.float.style.left = e.clientX - this.startedAt.offsetX + 'px';
-      this.float.style.top = e.clientY - this.startedAt.offsetY + 'px';
+    if (this.floatElement) {
+      this.floatElement.style.left = e.clientX - this.startedAt.offsetX + 'px';
+      this.floatElement.style.top = e.clientY - this.startedAt.offsetY + 'px';
     }
 
     const newIndex = findIndex(
@@ -148,8 +154,8 @@ export class NgReorderable implements OnInit {
       toggleClassName(this.activeElement, 'active', false);
       this.activeElement = void 0;
     }
-    if (this.float) {
-      this.float.parentNode?.removeChild(this.float);
+    if (this.floatElement) {
+      this.floatElement.parentNode?.removeChild(this.floatElement);
     }
   }
 }
