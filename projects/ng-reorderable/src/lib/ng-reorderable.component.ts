@@ -9,7 +9,7 @@ import {
   Output,
 } from '@angular/core';
 import { getPositions } from './helpers/get_positions';
-import { createIndicator } from './helpers/create_indicator';
+import { createFloat } from './helpers/create_float';
 import { NgReorderableItemDirective } from './ng-reorderable-item.directive';
 import { Position, ReorderEvent } from './types';
 import { findIndex } from './helpers/find_index';
@@ -22,18 +22,18 @@ import { moveItemInArray } from './helpers/move_item_in_array';
 })
 export class NgReorderable implements OnInit {
   @Input() dataSource = [];
-  @Input() name: string | undefined;
+  @Input() floatClassName: string | undefined;
   @Output() reorder = new EventEmitter();
 
   data = [];
   active = false;
   dragging = false;
   mousedown = false;
-  startedAt = { left: 0, top: 0 };
+  startedAt = { left: 0, top: 0, offsetX: 0, offsetY: 0 };
   activeElement: HTMLDivElement | undefined;
   startedIndex = -1;
   newIndex = -1;
-  indicator: HTMLDivElement | undefined;
+  float: HTMLDivElement | undefined;
   positions: Position[] = [];
 
   @HostListener('window:mousemove', ['$event']) onMouseMove(
@@ -58,15 +58,15 @@ export class NgReorderable implements OnInit {
         this.elementRef.nativeElement as HTMLElement
       );
       if (this.activeElement) {
+        this.float = createFloat(this.activeElement, this.floatClassName);
         this.activeElement.className = 'active';
-        this.indicator = createIndicator(this.activeElement);
       }
       this.dragging = true;
     }
 
-    if (this.indicator) {
-      this.indicator.style.left = e.clientX + 3 + 'px';
-      this.indicator.style.top = e.clientY + 3 + 'px';
+    if (this.float) {
+      this.float.style.left = e.clientX - this.startedAt.offsetX + 'px';
+      this.float.style.top = e.clientY - this.startedAt.offsetY + 'px';
     }
 
     const newIndex = findIndex(
@@ -103,12 +103,17 @@ export class NgReorderable implements OnInit {
     if (this.dataSource.length < 2) {
       return;
     }
+    e.stopPropagation();
+    e.preventDefault();
 
     const element = e.currentTarget as HTMLDivElement;
+    const position = element.getBoundingClientRect();
 
     this.startedAt = {
       left: e.clientX,
       top: e.clientY,
+      offsetX: e.clientX - position.left,
+      offsetY: e.clientY - position.top,
     };
     this.activeElement = element;
     this.newIndex = index;
@@ -134,8 +139,8 @@ export class NgReorderable implements OnInit {
       this.activeElement.className = '';
       this.activeElement = void 0;
     }
-    if (this.indicator) {
-      this.indicator.parentNode?.removeChild(this.indicator);
+    if (this.float) {
+      this.float.parentNode?.removeChild(this.float);
     }
   }
 }
