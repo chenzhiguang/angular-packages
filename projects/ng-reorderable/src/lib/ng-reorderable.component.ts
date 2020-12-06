@@ -22,9 +22,10 @@ import { moveItemInArray } from './helpers/move_item_in_array';
 })
 export class NgReorderable implements OnInit {
   @Input() dataSource = [];
+  @Input() name: string | undefined;
   @Output() reorder = new EventEmitter();
-  data = [];
 
+  data = [];
   active = false;
   dragging = false;
   mousedown = false;
@@ -57,6 +58,7 @@ export class NgReorderable implements OnInit {
         this.elementRef.nativeElement as HTMLElement
       );
       if (this.activeElement) {
+        this.activeElement.className = 'active';
         this.indicator = createIndicator(this.activeElement);
       }
       this.dragging = true;
@@ -66,6 +68,7 @@ export class NgReorderable implements OnInit {
       this.indicator.style.left = e.clientX + 3 + 'px';
       this.indicator.style.top = e.clientY + 3 + 'px';
     }
+
     const newIndex = findIndex(
       { left: e.clientX, top: e.clientY },
       this.positions
@@ -102,7 +105,6 @@ export class NgReorderable implements OnInit {
     }
 
     const element = e.currentTarget as HTMLDivElement;
-    element.className = 'active';
 
     this.startedAt = {
       left: e.clientX,
